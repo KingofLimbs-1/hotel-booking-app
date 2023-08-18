@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . ("../../config/database.php");
 ?>
 
@@ -38,10 +39,17 @@ class user
 
                 // User seperation
                 if ($user["role"] == "customer") {
+                    // Create session variable for user
+                    $_SESSION["username"] = $user["username"];
+                    // Redirect to landing page once signed in
                     header('location: ../index.php');
                     exit();
                 } else {
-                    // If user is an admin, redirect to appropriate page
+                    // If user is an admin
+
+                    // Create session variable for user
+                    $_SESSION["username"] = $user["username"];
+                    // Redirect to staff landing page once signed in
                     header('location: ../views/staff/landing.php');
                     exit();
                 }
@@ -53,6 +61,21 @@ class user
     }
     // ...
 
+    // Log user out of site
+    public function logout($username)
+    {
+        if (!isset($username)) {
+            echo "Error: user is not signed in";
+        } else {
+            session_unset();
+            session_destroy();
+
+            header('location: ../index.php');
+            exit();
+        }
+    }
+    // ...
+ 
     // Register user on site
     public function registerUser($username, $fullName, $email, $password)
     {
