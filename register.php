@@ -7,11 +7,13 @@
     <title>Register</title>
     <link rel="stylesheet" href="./assets/css/fonts.css">
     <link rel="stylesheet" href="./assets/css/register.css">
+    <script src="./js/togglePassword.js" defer></script>
 </head>
 
 <body>
     <div class="logo">
         <?php $imageLink = "./assets/images/logo.png" ?>
+        <?php $redirectLink = "./index.php" ?>
         <?php include __DIR__ . "/./config/logo.php" ?>
     </div>
 
@@ -31,7 +33,13 @@
                 <input type="text" name="email">
 
                 <label>Password</label>
-                <input type="password" name="password">
+                <div class="passwordContainer">
+                    <input type="password" id="password" name="password">
+                    <a id="togglePasswordButtons">
+                        <span class="passwordIcon hide" id="openEye"><img src="./assets/images/icons/showPW.png" alt="show password icon"></span>
+                        <span class="passwordIcon" id="closedEye"><img src="./assets/images/icons/hidePW.png" alt="hide password icon"></span>
+                    </a>
+                </div>
 
                 <div class="submitContainer">
                     <input type="submit" value="Register" name="register">
