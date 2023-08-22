@@ -33,5 +33,21 @@ class customer
     }
     // ...
 
+    // Display selected hotel information
+    public function displaySelectedHotelInfo($hotelID)
+    {
+        $sqlQuery = "SELECT * FROM hotels WHERE hotel_id = ?";
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param('i', $hotelID);
+
+        if ($statement->execute()) {
+
+            $hotelInfo = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $hotelInfo;
+        } else {
+            echo "Query failed";
+            return [];
+        }
+    }
 }
 ?>
