@@ -26,7 +26,6 @@ class user
         header("Location: $location");
         exit();
     }
-
     // ... 
 
 
@@ -106,9 +105,19 @@ class user
                 $statement2->bind_param('ssss', $username, $fullName, $email, $password);
 
                 if ($statement2->execute()) {
-                    $this->redirect("../index.php");
-                } else {
-                    echo "Error: Query failed, user could not be added to database";
+                    // Grab userID of most recent user registration
+                    $userID = $statement2->insert_id;
+                    // Query that creates a record of users in the customer table
+                    $sqlQuery3 = "INSERT INTO customers (user_id) VALUES (?)";
+                    $statement3 = $this->conn->prepare($sqlQuery3);
+                    $statement3->bind_param('i', $userID);
+                    // ...
+                    if ($statement3->execute()) {
+                        $_SESSION["username"] = $fullName;
+                        $this->redirect("../index.php");
+                    } else {
+                        echo "Error: Query failed, user could not be added to database";
+                    }
                 }
             }
         }
