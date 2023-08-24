@@ -18,13 +18,24 @@ class user
     }
     // ...
 
+    // Utility functions
+
+    // Redirect
+    private function redirect($location)
+    {
+        header("Location: $location");
+        exit();
+    }
+
+    // ... 
+
 
     // Methods
 
     // Log user into site
     public function loginUser($username, $password)
     {
-        $sqlQuery = "SELECT * FROM users WHERE username = ? AND password = ?";
+        $sqlQuery = "SELECT * FROM users WHERE username = ? AND password = ? ";
         $statement = $this->conn->prepare($sqlQuery);
         $statement->bind_param('ss', $username, $password);
 
@@ -40,18 +51,16 @@ class user
                 // User seperation
                 if ($user["role"] == "customer") {
                     // Create session variable for user
-                    $_SESSION["username"] = $user["username"];
+                    $_SESSION["username"] = $user["fullname"];
                     // Redirect to landing page once signed in
-                    header('location: ../index.php');
-                    exit();
+                    $this->redirect("../index.php");
                 } else {
                     // If user is an admin
 
                     // Create session variable for user
                     $_SESSION["username"] = $user["username"];
                     // Redirect to staff landing page once signed in
-                    header('location: ../views/staff/landing.php');
-                    exit();
+                    $this->redirect("../views/staff/landing.php");
                 }
             } else {
                 // User not found
@@ -70,19 +79,18 @@ class user
             session_unset();
             session_destroy();
 
-            header('location: ../index.php');
-            exit();
+            $this->redirect("../index.php");
         }
     }
     // ...
- 
+
     // Register user on site
     public function registerUser($username, $fullName, $email, $password)
     {
         // Check to see if user exist in the database
-        $sqlQuery = "SELECT * FROM users WHERE username = ? AND password = ?";
+        $sqlQuery = "SELECT * FROM users WHERE username = ?";
         $statement = $this->conn->prepare($sqlQuery);
-        $statement->bind_param('ss', $username, $password);
+        $statement->bind_param('s', $username);
 
         if ($statement->execute()) {
             // Fetch all rows that match query criteria
@@ -98,8 +106,7 @@ class user
                 $statement2->bind_param('ssss', $username, $fullName, $email, $password);
 
                 if ($statement2->execute()) {
-                    header('location: ../index.php');
-                    exit();
+                    $this->redirect("../index.php");
                 } else {
                     echo "Error: Query failed, user could not be added to database";
                 }
