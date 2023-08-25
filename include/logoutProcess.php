@@ -4,10 +4,10 @@
 <?php $userClassInstance =  new user($conn); ?>
 
 <?php
-if (isset($_SESSION["username"])) {
+if (isset($_SESSION["userID"])) {
     $errors = [];
-    $username = $_SESSION["username"];
-    $userClassInstance->logout($username);
+    $userID = $_SESSION["userID"];
+    $userClassInstance->logout($userID);
 } else {
     $errors[] = "Error: Cannot sign user out";
 }

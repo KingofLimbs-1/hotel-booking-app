@@ -50,14 +50,14 @@ class user
                 // User seperation
                 if ($user["role"] == "customer") {
                     // Create session variable for user
-                    $_SESSION["username"] = $user["fullname"];
+                    $_SESSION["userID"] = $user["user_id"];
                     // Redirect to landing page once signed in
                     $this->redirect("../index.php");
                 } else {
                     // If user is an admin
 
                     // Create session variable for user
-                    $_SESSION["username"] = $user["username"];
+                    $_SESSION["userID"] = $user["user_id"];
                     // Redirect to staff landing page once signed in
                     $this->redirect("../views/staff/landing.php");
                 }
@@ -70,9 +70,9 @@ class user
     // ...
 
     // Log user out of site
-    public function logout($username)
+    public function logout($userID)
     {
-        if (!isset($username)) {
+        if (!isset($userID)) {
             echo "Error: user is not signed in";
         } else {
             session_unset();
@@ -113,7 +113,7 @@ class user
                     $statement3->bind_param('i', $userID);
                     // ...
                     if ($statement3->execute()) {
-                        $_SESSION["username"] = $fullName;
+                        $_SESSION["userID"] = $userID;
                         $this->redirect("../index.php");
                     } else {
                         echo "Error: Query failed, user could not be added to database";
