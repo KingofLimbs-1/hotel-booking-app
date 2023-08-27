@@ -66,8 +66,8 @@ $navbar = new Navbar('../../index.php', '../../assets/images/logo.png', '../../r
         </div>
 
         <div class="deleteAccountContainer">
-            <form action="../../include/deleteAccount.php" method="post">
-                <input type="hidden" value="<?php echo $user["user_id"]; ?>">
+            <form action="../../include/deleteUserAccount.php" method="post">
+                <input type="hidden" value="<?php echo $user["user_id"]; ?>" name="userID">
                 <button type="submit">Delete Account</button>
             </form>
         </div>
