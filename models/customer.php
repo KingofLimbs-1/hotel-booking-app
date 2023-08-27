@@ -62,5 +62,23 @@ class customer
         }
     }
     // ...
+
+
+    // Delete user account
+    public function deleteUserAccount($userID)
+    {
+        $sqlQuery = "DELETE FROM users WHERE user_id = ?";
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param('i', $userID);
+
+        if ($statement->execute()) {
+            session_unset();
+            session_destroy();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    // ...
 }
 ?>
