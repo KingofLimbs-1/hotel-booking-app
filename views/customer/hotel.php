@@ -1,4 +1,17 @@
 <?php require_once __DIR__ . "/../../include/displaySelectedHotelInfo.php" ?>
+<?php session_start(); ?>
+
+<?php
+$userID = null;
+if (isset($_SESSION["userID"])) {
+    $userID = $_SESSION["userID"];
+}
+?>
+
+<?php
+require_once __DIR__ . '/../../models/navbar.php';
+$navbar = new Navbar('../../index.php', '../../assets/images/logo.png', '../../register.php', '../../login.php', '../../views/customer/profile.php', '../../assets/images/icons/userIcon.png', '../../include/logoutProcess.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,12 +22,18 @@
     <?php foreach ($hotelInfo as $hotel) : ?>
         <title><?php echo $hotel["name"]; ?></title>
     <?php endforeach; ?>
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
     <link rel="stylesheet" href="../../assets/css/fonts.css">
     <link rel="stylesheet" href="../../assets/css/customer/hotel.css">
 </head>
 
 <body>
     <?php foreach ($hotelInfo as $hotel) :  ?>
+        <div class="navbar">
+            <?php echo $navbar->renderLogo(); ?>
+            <?php echo $navbar->renderNavItems($userID); ?>
+        </div>
+
         <div class="hotelInformationContainer">
 
             <div class="hotelDetails" id="info">

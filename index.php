@@ -2,9 +2,15 @@
 <?php require_once __DIR__ . "/include/displayHotels.php"; ?>
 
 <?php
+$userID = null;
 if (isset($_SESSION["userID"])) {
     $userID = $_SESSION["userID"];
 }
+?>
+
+<?php
+require_once __DIR__ . '/models/navbar.php';
+$navbar = new Navbar('./index.php', './assets/images/logo.png', './register.php', './login.php', './views/customer/profile.php', './assets/images/icons/userIcon.png', './include/logoutProcess.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,57 +20,27 @@ if (isset($_SESSION["userID"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing</title>
+    <link rel="stylesheet" href="./assets/css/navbar.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
     <link rel="stylesheet" href="./assets/css/index.css">
 </head>
 
 <body>
-        <nav>
-            <div class="logo">
-                <?php $redirectLink = "./index.php" ?>
-                <?php $imageLink = "./assets/images/logo.png" ?>
-                <?php include __DIR__ . "/./config/logo.php" ?>
+    <div class="navbar">
+        <?php echo $navbar->renderLogo(); ?>
+        <?php echo $navbar->renderNavItems($userID); ?>
+    </div>
+
+    <!-- Landing -->
+    <section class="landingContainer">
+        <div class="innerContainer">
+            <div class="innerText">
+                <h1>Elevate Your Getaways</h1>
+                <h2>Discover, Reserve, Experience</h2>
+                <a class="scrollBtn" href="#hotels">Find Your Perfect Stay</a>
             </div>
-
-            <!-- Markup if user is not signed in -->
-            <?php if (!isset($userID)) : ?>
-                <div class="navItems" id="right">
-                    <a href="./register.php">
-                        <p>Register</p>
-                    </a>
-                    <hr>
-                    <a href="./login.php">
-                        <p>Login</p>
-                    </a>
-                </div>
-            <?php endif; ?>
-            <!-- ... -->
-
-            <!-- Markup if user is signed in -->
-            <?php if (isset($userID)) : ?>
-                <div class="navItems" id="right">
-                    <a href="./views/customer/profile.php">
-                        <img src="./assets/images/icons/userIcon.png" alt="userIcon">
-                    </a>
-                    <hr>
-                    <a href="./include/logoutProcess.php">
-                        <p>Logout</p>
-                    </a>
-                </div>
-            <?php endif; ?>
-            <!-- ... -->
-        </nav>
-
-        <!-- Landing -->
-        <section class="landingContainer">
-            <div class="innerContainer">
-                <div class="innerText">
-                    <h1>Elevate Your Getaways</h1>
-                    <h2>Discover, Reserve, Experience</h2>
-                    <a class="scrollBtn" href="#hotels">Find Your Perfect Stay</a>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
     <!-- Landing end -->
 
     <!-- Content section -->
@@ -99,7 +75,6 @@ if (isset($_SESSION["userID"])) {
                             <span id="price"><?php echo "R" . $hotel["cost_per_night"]; ?></span>
                         </div>
                     </div>
-
                 </button>
                 </form>
             <?php endforeach; ?>

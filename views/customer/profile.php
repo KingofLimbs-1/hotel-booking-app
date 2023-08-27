@@ -1,3 +1,17 @@
+<?php session_start(); ?>
+
+<?php
+$userID = null;
+if (isset($_SESSION["userID"])) {
+    $userID = $_SESSION["userID"];
+}
+?>
+
+<?php
+require_once __DIR__ . '/../../models/navbar.php';
+$navbar = new Navbar('../../index.php', '../../assets/images/logo.png', '../../register.php', '../../login.php', '../../views/customer/profile.php', '../../assets/images/icons/userIcon.png', '../../include/logoutProcess.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,11 +19,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Account</title>
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
     <link rel="stylesheet" href="../../assets/css/fonts.css">
     <link rel="stylesheet" href="../../assets/css/customer/profile.css">
 </head>
 
 <body>
+<div class="navbar">
+        <?php echo $navbar->renderLogo(); ?>
+        <?php echo $navbar->renderNavItems($userID); ?>
+    </div>
     <div class="heading">
         <h1>Manage Account</h1>
     </div>
