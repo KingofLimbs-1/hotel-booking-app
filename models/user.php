@@ -26,7 +26,16 @@ class user
         header("Location: $location");
         exit();
     }
-    // ... 
+    // ...
+
+    // Create session variable
+    private function createUserSession($userID, $role)
+    {
+        $_SESSION["userID"] = $userID;
+        $redirectLocation = $role === "customer" ? "../index.php" : "../views/staff/landing.php";
+        $this->redirect($redirectLocation);
+    }
+    // ...
 
 
     // Methods
@@ -46,21 +55,7 @@ class user
             if ($result->num_rows > 0) {
                 // Iterate through result and fetch rows as arrays
                 $user = $result->fetch_assoc();
-
-                // User seperation
-                if ($user["role"] == "customer") {
-                    // Create session variable for user
-                    $_SESSION["userID"] = $user["user_id"];
-                    // Redirect to landing page once signed in
-                    $this->redirect("../index.php");
-                } else {
-                    // If user is an admin
-
-                    // Create session variable for user
-                    $_SESSION["userID"] = $user["user_id"];
-                    // Redirect to staff landing page once signed in
-                    $this->redirect("../views/staff/landing.php");
-                }
+                $this->createUserSession($user["user_id"], $user["role"]);
             } else {
                 // User not found
                 echo "Error" . "</br>" . "User not found or information is incorrect." . "</br>" . "Please register or retry.";
@@ -77,7 +72,6 @@ class user
         } else {
             session_unset();
             session_destroy();
-
             $this->redirect("../index.php");
         }
     }
@@ -113,8 +107,7 @@ class user
                     $statement3->bind_param('i', $userID);
                     // ...
                     if ($statement3->execute()) {
-                        $_SESSION["userID"] = $userID;
-                        $this->redirect("../index.php");
+                        $this->createUserSession($userID, "customer");
                     } else {
                         echo "Error: Query failed, user could not be added to database";
                     }
