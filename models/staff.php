@@ -46,6 +46,26 @@ class Staff
     }
     // ...
 
+    // Insert into staff table
+    private function insertIntoStaff($userID)
+    {
+        $sqlQuery = "INSERT INTO staff (user_id) VALUES (?)";
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param('i', $userID);
+        $statement->execute();
+    }
+    // ...
+
+    // Insert into customer table
+    private function insertIntoCustomers($userID)
+    {
+        $sqlQuery = "INSERT INTO customers (user_id) VALUES (?)";
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param('i', $userID);
+        $statement->execute();
+    }
+    // ...
+
 
     // METHODS
 
@@ -128,6 +148,34 @@ class Staff
 
             return $this->executeQuery($statement);
         }
+    }
+    // ...
+
+    // Add admin
+    public function addAdmin($userID, $username, $fullname,  $email, $password, $role)
+    {
+        if ($this->isAdmin($userID)) {
+            $sqlQuery = "INSERT INTO users (username, fullname, email, password, role) VALUES (?, ?, ?, ?, ?)";
+            $statement = $this->conn->prepare($sqlQuery);
+            $statement->bind_param('sssss', $username, $fullname, $email, $password, $role);
+
+            if ($statement->execute()) {
+                $userID = $statement->insert_id;
+
+                // If user role is "admin" create record in admin/staff table
+                if ($role === "admin") {
+                    $this->insertIntoStaff($userID);
+                    // If user role is "customer" create record in customers table
+                } elseif ($role === "customer") {
+                    $this->insertIntoCustomers($userID);
+                }
+
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
     // ...
 }
