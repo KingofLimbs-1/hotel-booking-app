@@ -14,7 +14,7 @@ class Staff
     }
     // ...
 
-    // Utility functions
+    // UTILITY
 
     // Check to see if user performing admin-based operations has a role of user
     private function isAdmin($userID)
@@ -29,7 +29,18 @@ class Staff
             $statement->close();
             return $user['role'] === 'admin';
         } else {
-            // Handle query failure
+            return false;
+        }
+    }
+    // ...
+
+    // Execute queries and handle errors
+    // Used for queries that don't return anything
+    private function executeQuery($statement)
+    {
+        if ($statement->execute()) {
+            return true;
+        } else {
             return false;
         }
     }
@@ -49,7 +60,6 @@ class Staff
             $statement->close();
             return $users;
         } else {
-            echo "Query failed";
             return [];
         }
     }
@@ -90,7 +100,6 @@ class Staff
             $statement->close();
             return $booking;
         } else {
-            echo "Query Failed";
             return [];
         }
     }
@@ -104,11 +113,20 @@ class Staff
             $statement = $this->conn->prepare($sqlQuery);
             $statement->bind_param('sdsiiss', $name, $costPerNight, $type, $beds, $rating, $city, $address);
 
-            if ($statement->execute()) {
-                return "Hotel Added Successfully";
-            } else {
-                return "Query Failed";
-            }
+            return $this->executeQuery($statement);
+        }
+    }
+    // ...
+
+    // Delete hotel
+    public function deleteHotel($userID, $hotelID)
+    {
+        if ($this->isAdmin($userID)) {
+            $sqlQuery = "DELETE FROM hotels WHERE hotel_id = ?";
+            $statement = $this->conn->prepare($sqlQuery);
+            $statement->bind_param('i', $hotelID);
+
+            return $this->executeQuery($statement);
         }
     }
     // ...
