@@ -16,8 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $role = $_POST["role"];
 
     $newStaffInstance = new Staff($conn);
-    $addAdmin = $newStaffInstance->addAdmin($userID, $username, $fullname, $email, $password, $role);
-    if ($addAdmin) {
+    $addUser = $newStaffInstance->addUser($userID, $username, $fullname, $email, $password, $role);
+    if ($addUser) {
         header('location: ./../views/staff/landing.php?content=viewUsers');
         exit();
     }
