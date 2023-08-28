@@ -151,8 +151,8 @@ class Staff
     }
     // ...
 
-    // Add admin
-    public function addAdmin($userID, $username, $fullname,  $email, $password, $role)
+    // Add user or admin
+    public function addUser($userID, $username, $fullname,  $email, $password, $role)
     {
         if ($this->isAdmin($userID)) {
             $sqlQuery = "INSERT INTO users (username, fullname, email, password, role) VALUES (?, ?, ?, ?, ?)";
@@ -178,5 +178,19 @@ class Staff
         return false;
     }
     // ...
+
+    // Delete user or admin
+    public function deleteUser($sessionUserID, $userID)
+    {
+        if ($this->isAdmin($sessionUserID)) {
+            $sqlQuery = "DELETE FROM users WHERE user_id = ?";
+            $statement = $this->conn->prepare($sqlQuery);
+            $statement->bind_param('i', $userID);
+
+            return $this->executeQuery($statement);
+        }
+    }
+    // ...
+
 }
 ?>
