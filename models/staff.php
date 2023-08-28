@@ -14,6 +14,27 @@ class Staff
     }
     // ...
 
+    // Utility functions
+
+    // Check to see if user performing admin-based operations has a role of user
+    private function isAdmin($userID)
+    {
+        $sqlQuery = "SELECT role FROM users WHERE user_id = ?";
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param("i", $userID);
+
+        if ($statement->execute()) {
+            $result = $statement->get_result();
+            $user = $result->fetch_assoc();
+            $statement->close();
+            return $user['role'] === 'admin';
+        } else {
+            // Handle query failure
+            return false;
+        }
+    }
+    // ...
+
 
     // METHODS
 
@@ -33,9 +54,9 @@ class Staff
         }
     }
     // ...
-    
+
     // Display bookings
-    public function displayBookings()
+    public function displayBookings($searchTerm = "")
     {
         $sqlQuery = "
         SELECT
@@ -54,10 +75,14 @@ class Staff
         INNER JOIN
             users AS u ON c.user_id = u.user_id
         INNER JOIN
-            hotels AS h ON b.hotel_id = h.hotel_id;
+            hotels AS h ON b.hotel_id = h.hotel_id
+        WHERE
+            u.fullname LIKE CONCAT('%', ?, '%')
+            OR u.user_id = ?;
         ";
 
         $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param("ss", $searchTerm, $searchTerm);
 
         if ($statement->execute()) {
             $result = $statement->get_result();
@@ -67,6 +92,23 @@ class Staff
         } else {
             echo "Query Failed";
             return [];
+        }
+    }
+    // ...
+
+    // Add hotel
+    public function addHotel($userID, $name, $costPerNight, $type, $beds, $rating, $city, $address)
+    {
+        if ($this->isAdmin($userID)) {
+            $sqlQuery = "INSERT INTO hotels (name, cost_per_night, type, beds, rating, city, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $statement = $this->conn->prepare($sqlQuery);
+            $statement->bind_param('sdsiiss', $name, $costPerNight, $type, $beds, $rating, $city, $address);
+
+            if ($statement->execute()) {
+                return "Hotel Added Successfully";
+            } else {
+                return "Query Failed";
+            }
         }
     }
     // ...
