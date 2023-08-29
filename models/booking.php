@@ -119,5 +119,36 @@ class Booking
         return $relatedHotels;
     }
     // ...
+
+    // Cancel booking
+    public function cancelBooking($bookingID)
+    {
+        $sqlQuery = "UPDATE bookings SET status = 'cancelled' WHERE booking_id = ?";
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param('i', $bookingID);
+
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    // ...
+
+    // Complete booking
+    public function completeBooking($bookingID)
+    {
+        $sqlQuery = "UPDATE bookings SET status = 'completed' WHERE booking_id = ?";
+
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param('i', $bookingID);
+
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    // ...
 }
 ?>
