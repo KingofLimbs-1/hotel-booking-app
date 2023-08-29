@@ -47,7 +47,7 @@ $navbar = new Navbar('./index.php', './assets/images/logo.png', './register.php'
     <section class="hotelSection" id="hotels">
         <?php foreach ($hotels as $hotel) : ?>
             <?php if (isset($userID)) : ?>
-                <form action="./views/customer/hotel.php" method="post">
+                <form action="./views/customer/hotel.php" method="get">
                 <?php endif; ?>
                 <input type="hidden" value="<?php echo $hotel["hotel_id"]; ?>" name="hotelID">
                 <button type="submit" class="hotelContainer">

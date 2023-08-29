@@ -3,8 +3,8 @@
 <?php $customerClassInstance = new hotel($conn); ?>
 
 <?php
-if (isset($_POST["hotelID"])) {
-    $hotelID = $_POST["hotelID"];
+if (isset($_GET["hotelID"])) {
+    $hotelID = $_GET["hotelID"];
     $hotelInfo = $customerClassInstance->displaySelectedHotelInfo($hotelID);
 }
 ?>
