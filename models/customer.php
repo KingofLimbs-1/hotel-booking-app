@@ -33,6 +33,43 @@ class customer
     }
     // ...
 
+    // Display bookings for the currently signed-in user
+    public function displayUserBookings($userID)
+    {
+        $sqlQuery = "
+            SELECT
+                b.booking_id,
+                h.name AS hotel_name,
+                b.check_in,
+                b.check_out,
+                b.days,
+                b.total_cost,
+                b.status
+            FROM
+                bookings AS b
+            INNER JOIN
+                customers AS c ON b.customer_id = c.customer_id
+            INNER JOIN
+                users AS u ON c.user_id = u.user_id
+            INNER JOIN
+                hotels AS h ON b.hotel_id = h.hotel_id
+            WHERE
+                u.user_id = ?
+        ";
+
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param("i", $userID);
+
+        if ($statement->execute()) {
+            $result = $statement->get_result();
+            $bookings = $result->fetch_all(MYSQLI_ASSOC);
+            return $bookings;
+        } else {
+            return [];
+        }
+    }
+    // ...
+
 
     // Edit user information
     public function editUserInformation($userID, $property, $newValue)
