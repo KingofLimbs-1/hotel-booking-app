@@ -199,7 +199,7 @@ git clone https://github.com/your-username/your-repo.git
 
 3. #### Import the database:
 
-Locate the SQL copy of the database (library.sql) in the project directory. Use a tool like phpMyAdmin or the command line to import the database into your local MySQL server.
+Locate the SQL copy of the database (hotel-reservation-system.sql) in the project directory. Use a tool like phpMyAdmin or the command line to import the database into your local MySQL server.
 
 - #### Using phpMyAdmin:
 
