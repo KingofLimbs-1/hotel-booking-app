@@ -1,0 +1,68 @@
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cairo Regular";
+}
+
+a {
+  all: unset;
+}
+/* GENERAL END */
+
+/* CONTENT */
+.heading {
+  text-decoration: underline;
+  margin: 30px;
+}
+
+.container img {
+  height: 70px;
+  width: 70px;
+}
+
+.interactionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 100px;
+}
+
+.personalInformationButton {
+  border: 5px solid #0ca593;
+}
+
+.bookingsButton {
+  border: 5px solid #eb4459;
+}
+
+#button {
+  cursor: pointer;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+#container:hover {opacity: 0.5}
+
+.text h3 {
+  font-weight: 300;
+  color: #a4a4a4;
+}
+/* CONTENT END */

@@ -45,7 +45,7 @@
              <div class="formItemContainer">
                  <div class="item">
                      <label>Rating</label>
-                     <input type="number" name="rating" required>
+                     <input type="number" step="0.01" name="rating" required>
                  </div>
                  <div class="item">
                      <label>City</label>
