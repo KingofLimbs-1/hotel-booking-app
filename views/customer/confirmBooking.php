@@ -55,11 +55,11 @@ if (isset($_GET["booking_id"])) {
                     <span><?php echo $bookingInfo["hotel_name"]; ?></span>
                     <span><?php echo $bookingInfo["hotel_type"]; ?></span>
                     <span>
-                        <img id="bedsImg" src="../../assets/images/icons/beds.png" alt="">
+                        <img id="bedsImg" src="../../assets/images/icons/beds.png" alt="beds icon">
                         <?php echo $bookingInfo["hotel_beds"]; ?>
                     </span>
                     <span>
-                        <img src="../../assets/images/icons/ratingStar.png" alt="">
+                        <img src="../../assets/images/icons/ratingStar.png" alt="rating icon">
                         <?php echo $bookingInfo["hotel_rating"]; ?>
                     </span>
                 </div>
@@ -103,10 +103,10 @@ if (isset($_GET["booking_id"])) {
     <div class="relatedHotelsContainer">
         <div class="relatedHotels">
             <?php foreach ($relatedHotels as $relatedHotel) : ?>
-                <a href="<?php echo "./../../views/customer/hotel.php?hotel_id=" . $relatedHotel["hotel_id"]; ?>">
+                <a href="<?php echo "./../../views/customer/hotel.php?hotelID=" . $relatedHotel["hotel_id"]; ?>">
                     <div class="relatedHotel">
                         <div class="relatedThumbnail">
-                            <img src="<?php echo "../." . $relatedHotel["thumbnail"] ?>" alt="">
+                            <img src="<?php echo "../." . $relatedHotel["thumbnail"] ?>" alt="related hotel thumbnail">
                         </div>
 
                         <div class="name">
@@ -114,7 +114,7 @@ if (isset($_GET["booking_id"])) {
                         </div>
 
                         <div class="rating">
-                            <img src="../../assets/images/icons/ratingStar.png" alt="">
+                            <img src="../../assets/images/icons/ratingStar.png" alt="rating icon">
                             <span><?php echo $relatedHotel["rating"]; ?></span>
                         </div>
 
@@ -124,12 +124,12 @@ if (isset($_GET["booking_id"])) {
                             <?php if ($relatedHotel["cost_per_night"] < $bookingInfo["hotel_cost_per_night"]) : ?>
                                 <span id="relatedContainerPrice">
                                     <span><?php echo "R" . $relatedHotel["cost_per_night"] ?></span>
-                                    <img src="../../assets/images/icons/discount.png" alt="">
+                                    <img src="../../assets/images/icons/discount.png" alt="discount icon">
                                 </span>
                             <?php else : ?>
                                 <span id="relatedContainerPrice">
                                     <span><?php echo "R" . $relatedHotel["cost_per_night"] ?></span>
-                                    <img src="../../assets/images/icons/expensive.png" alt="">
+                                    <img src="../../assets/images/icons/expensive.png" alt="expensive icon">
                                 </span>
                             <?php endif; ?>
                         </div>
