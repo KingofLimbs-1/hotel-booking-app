@@ -150,5 +150,33 @@ class Booking
         }
     }
     // ...
+
+    // Generate receipt content
+    private function generateReceiptContent($bookingID)
+    {
+        $bookingInfo = $this->getBookingInfo($bookingID);
+        $receiptContent = "Booking Receipt\n";
+        $receiptContent .= "----------------\n";
+        $receiptContent .= "User: " . $bookingInfo["user_fullname"] . "\n";
+        $receiptContent .= "Hotel: " . $bookingInfo["hotel_name"] . "\n";
+        $receiptContent .= "Check-In: " . date("Y-m-d", strtotime($bookingInfo["check_in"])) . "\n";
+        $receiptContent .= "Check-Out: " . date("Y-m-d", strtotime($bookingInfo["check_out"])) . "\n";
+        $receiptContent .= "Total Cost: R" . $bookingInfo["total_cost"] . "\n";
+
+        return $receiptContent;
+    }
+
+    // Download receipt
+    public function downloadReceipt($bookingID)
+    {
+        $receiptContent = $this->generateReceiptContent($bookingID);
+        $receiptFileName = "booking_receipt_" . $bookingID . ".txt";
+        // Set headers to force download
+        header('Content-Type: text/plain');
+        header('Content-Disposition: attachment; filename="' . $receiptFileName . '"');
+        echo $receiptContent;
+        exit();
+    }
+    // ...
 }
 ?>
