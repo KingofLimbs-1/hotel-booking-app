@@ -50,11 +50,21 @@
                         <td><?php echo date("Y-m-d", strtotime($bookingInfo["check_in"])); ?></td>
                         <td><?php echo date("Y-m-d", strtotime($bookingInfo["check_out"])); ?></td>
                         <td><?php echo $bookingInfo["days"] . " " . "days"; ?></td>
-                        <td><?php echo $bookingInfo["status"]; ?></td>
                         <td>
-                            <form action="">
-                                <button class="cancelBookingButton" type="submit">Cancel</button>
-                            </form>
+                            <?php if ($bookingInfo["status"] == "false") {
+                                echo "N/A";
+                            } else {
+                                echo $bookingInfo["status"];
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php if ($bookingInfo["status"] !== "cancelled") : ?>
+                                <form action="../../include/cancelBooking.php" method="post">
+                                    <input type="hidden" name="bookingID" value="<?php echo $bookingInfo["booking_id"]; ?>">
+                                    <button class="cancelBookingButton" name="cancelBooking" type="submit">Cancel</button>
+                                </form>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php } ?>
