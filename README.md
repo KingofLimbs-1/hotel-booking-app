@@ -68,7 +68,8 @@ It provides an overview of the tables, relationships, and key components that st
 
 ### <ins>Entity-Relationship Diagram (ERD)</ins>
 
-![Alt text](image.png)
+![image](https://github.com/KingofLimbs-1/hotel-booking-app/assets/99418553/11ad42ec-204c-465d-8616-6a6811463f5e)
+
 
 ## <ins>Tables and Fields</ins>
 
@@ -103,7 +104,7 @@ It provides an overview of the tables, relationships, and key components that st
 | Name        | Type         | Constraints | Default |
 | ----------- | ------------ | ----------- | ------- |
 | customer_id | int(11)      | Primary 🔑  | None    |
-| user_id     | varchar(100) | Foreign 🔑  | None    |
+| user_id     | int(11) | Foreign 🔑  | None    |
 
 ##### Relationships
 
@@ -119,7 +120,7 @@ It provides an overview of the tables, relationships, and key components that st
 | Name     | Type         | Constraints | Default |
 | -------- | ------------ | ----------- | ------- |
 | staff_id | int(11)      | Primary 🔑  | None    |
-| user_id  | varchar(100) | Foreign 🔑  | None    |
+| user_id  | int(11) | Foreign 🔑  | None    |
 
 ##### Relationships
 
@@ -135,7 +136,7 @@ It provides an overview of the tables, relationships, and key components that st
 | Name           | Type         | Constraints | Default |
 | -------------- | ------------ | ----------- | ------- |
 | hotel_id       | int(11)      | Primary 🔑  | None    |
-| name           | int(11)      | None        | None    |
+| name           | varchar(50)      | None        | None    |
 | thumbnail      | varchar(200) | None        | None    |
 | cost_per_night | bigint       | None        | None    |
 | description    | varchar(500) | None        | None    |
@@ -164,7 +165,7 @@ It provides an overview of the tables, relationships, and key components that st
 | customer_id | int(11)      | Foreign 🔑  | None    |
 | hotel_id    | int(11)      | Foreign 🔑  | None    |
 | check_in    | datetime     | None        | None    |
-| check_out   | varchar(500) | None        | None    |
+| check_out   | datetime | None        | None    |
 | days        | int(11)      | None        | None    |
 | total_cost  | decimal      | None        | None    |
 | status      | varchar(30)  | None        | false   |
