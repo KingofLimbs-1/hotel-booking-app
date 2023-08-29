@@ -86,30 +86,30 @@ class Staff
     // ...
 
     // Display bookings
-    public function displayBookings($searchTerm = "")
+    public function displayBookingsByUser($searchTerm = "")
     {
         $sqlQuery = "
-        SELECT
-            b.booking_id,
-            u.fullname AS customer_name,
-            h.name AS hotel_name,
-            b.check_in,
-            b.check_out,
-            b.days,
-            b.total_cost,
-            b.status
-        FROM
-            bookings AS b
-        INNER JOIN
-            customers AS c ON b.customer_id = c.customer_id
-        INNER JOIN
-            users AS u ON c.user_id = u.user_id
-        INNER JOIN
-            hotels AS h ON b.hotel_id = h.hotel_id
-        WHERE
-            u.fullname LIKE CONCAT('%', ?, '%')
-            OR u.user_id = ?;
-        ";
+    SELECT
+        b.booking_id,
+        u.fullname AS customer_name,
+        h.name AS hotel_name,
+        b.check_in,
+        b.check_out,
+        b.days,
+        b.total_cost,
+        b.status
+    FROM
+        bookings AS b
+    INNER JOIN
+        customers AS c ON b.customer_id = c.customer_id
+    INNER JOIN
+        users AS u ON c.user_id = u.user_id
+    INNER JOIN
+        hotels AS h ON b.hotel_id = h.hotel_id
+    WHERE
+        u.fullname LIKE CONCAT('%', ?, '%')
+        OR u.user_id = ?
+    ";
 
         $statement = $this->conn->prepare($sqlQuery);
         $statement->bind_param("ss", $searchTerm, $searchTerm);
@@ -132,6 +132,32 @@ class Staff
             $sqlQuery = "INSERT INTO hotels (name, cost_per_night, type, beds, rating, city, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $statement = $this->conn->prepare($sqlQuery);
             $statement->bind_param('sdsiiss', $name, $costPerNight, $type, $beds, $rating, $city, $address);
+
+            return $this->executeQuery($statement);
+        }
+    }
+    // ...
+
+    // Update hotel
+    public function updateHotel($userID, $hotelID, $editedFields)
+    {
+        if ($this->isAdmin($userID)) {
+            $sqlQuery = "UPDATE hotels SET ";
+            $params = array();
+
+            foreach ($editedFields as $field => $value) {
+                $sqlQuery .= "$field = ?, ";
+                $params[] = $value;
+            }
+
+            // Remove trailing comma and space
+            $sqlQuery = rtrim($sqlQuery, ', ');
+            $sqlQuery .= " WHERE hotel_id = ?";
+            $params[] = $hotelID;
+
+            $bindTypes = str_repeat('s', count($params) - 1) . 'i'; 
+            $statement = $this->conn->prepare($sqlQuery);
+            $statement->bind_param($bindTypes, ...$params);
 
             return $this->executeQuery($statement);
         }
