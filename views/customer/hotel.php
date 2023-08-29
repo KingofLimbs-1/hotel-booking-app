@@ -41,17 +41,22 @@ $navbar = new Navbar('../../index.php', '../../assets/images/logo.png', '../../r
                 <h1 class="heading"><?php echo $hotel["name"]; ?></h1>
 
                 <div class="detail">
-                    <img src="../../assets/images/icons/cityMarker.png" alt="">
+                    <img src="../../assets/images/icons/hotelPrice.png" alt="price tag icon">
+                    <span><?php echo "R" . $hotel["cost_per_night"] . " " . "Per Night"; ?></span>
+                </div>
+
+                <div class="detail">
+                    <img src="../../assets/images/icons/cityMarker.png" alt="city marker icon">
                     <span><?php echo $hotel["city"] ?></span>
                 </div>
 
                 <div class="detail">
-                    <img src="../../assets/images/icons/addressMarker.png" alt="">
+                    <img src="../../assets/images/icons/addressMarker.png" alt="address marker icon">
                     <span><?php echo $hotel["address"]; ?></span>
                 </div>
 
                 <div class="detail">
-                    <img src="../../assets/images/icons/ratingStar.png" alt="">
+                    <img src="../../assets/images/icons/ratingStar.png" alt="rating icon">
                     <span><?php echo $hotel["rating"]; ?></span>
                 </div>
 
@@ -87,21 +92,27 @@ $navbar = new Navbar('../../index.php', '../../assets/images/logo.png', '../../r
 
             <div class="bookHotelContainer">
 
-                <div class="bookingContainer">
-                    <div class="date">
-                        <label>Check-in</label>
-                        <input type="date">
-                    </div>
-                    <div class="date">
-                        <label>Checkout</label>
-                        <input type="date">
-                    </div>
+                <form action="../../include/createBooking.php" method="post">
+                    <input type="hidden" name="userID" value="<?php echo $userID; ?>">
+                    <input type="hidden" name="hotelID" value="<?php echo $hotel["hotel_id"] ?>">
+                    <input type="hidden" name="costPerNight" value="<?php echo $hotel["cost_per_night"]; ?>">
 
-                    <div class="submitContainer">
-                        <input type="submit" value="Book">
-                    </div>
+                    <div class="bookingContainer">
+                        <div class="date">
+                            <label>Check-in</label>
+                            <input type="date" name="check-in" required>
+                        </div>
+                        <div class="date">
+                            <label>Checkout</label>
+                            <input type="date" name="check-out" required>
+                        </div>
 
-                </div>
+                        <div class="submitContainer">
+                            <input type="submit" value="Book">
+                        </div>
+
+                    </div>
+                </form>
             </div>
 
         </div>
