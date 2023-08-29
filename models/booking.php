@@ -76,7 +76,7 @@ class Booking
     // Get booking info
     public function getBookingInfo($bookingID)
     {
-        $sqlQuery = "SELECT b.booking_id, b.check_in, b.check_out, b.total_cost, b.days, u.fullname AS user_fullname, u.email AS user_email, h.name AS hotel_name, h.type as hotel_type, h.beds AS hotel_beds, h.rating AS hotel_rating, h.cost_per_night AS hotel_cost_per_night, h.address AS hotel_address, h.thumbnail as hotel_thumbnail
+        $sqlQuery = "SELECT b.booking_id, b.check_in, b.check_out, b.total_cost, b.days, u.fullname AS user_fullname, u.email AS user_email, h.hotel_id AS hotel_id, h.name AS hotel_name, h.type as hotel_type, h.beds AS hotel_beds, h.rating AS hotel_rating, h.cost_per_night AS hotel_cost_per_night, h.address AS hotel_address, h.thumbnail as hotel_thumbnail
                      FROM bookings AS b
                      JOIN customers AS c ON b.customer_id = c.customer_id
                      JOIN users AS u ON c.user_id = u.user_id
@@ -93,6 +93,30 @@ class Booking
         } else {
             return null;
         }
+    }
+    // ...
+
+    // Get related hotels
+    public function getRelatedHotels($hotelID, $costPerNight, $limit = 4)
+    {
+        $sqlQuery = "SELECT * FROM hotels WHERE hotel_id != ? AND cost_per_night  BETWEEN ? AND ? LIMIT ?";
+
+        // Limits to what the lowest and highest difference can be
+        $lowerLimit = $costPerNight - 50;
+        $upperLimit = $costPerNight + 50;
+
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param('iiii', $hotelID, $lowerLimit, $upperLimit, $limit);
+        $statement->execute();
+
+        $result = $statement->get_result();
+
+        $relatedHotels = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $relatedHotels[] = $row;
+        }
+        return $relatedHotels;
     }
     // ...
 }
