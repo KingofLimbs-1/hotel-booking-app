@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php require_once __DIR__ . "../../models/booking.php"; ?>
 <?php $newBookingInstance = new Booking($conn); ?>
 
@@ -8,6 +9,16 @@
     $checkOut = $_POST["check-out"];
     $costPerNight = $_POST["costPerNight"];
 
-    $booking = $newBookingInstance->createBooking($userID, $hotelID, $checkIn, $checkOut, $costPerNight);
+    $bookingCreated = $newBookingInstance->createBooking($userID, $hotelID, $checkIn, $checkOut, $costPerNight);
+
+    if ($bookingCreated) {
+        // Get the last inserted booking ID
+        $lastBookingID = $newBookingInstance->getLastInsertedID();
+
+        header("Location: ./../views/customer/confirmBooking.php?booking_id=" . $lastBookingID);
+        exit();
+    } else {
+        echo "Booking failed";
+    }
 }
 ?>
