@@ -66,6 +66,24 @@ class Staff
     }
     // ...
 
+    // Get user by ID
+    public function getUserByID($userID)
+    {
+        $sqlQuery = "SELECT * FROM users WHERE user_id = ?";
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param('i', $userID);
+
+        if ($statement->execute()) {
+            $result = $statement->get_result();
+            $user = $result->fetch_assoc();
+            $statement->close();
+            return $user;
+        } else {
+            return null;
+        }
+    }
+    // ...
+
 
     // METHODS
 
@@ -86,7 +104,7 @@ class Staff
     // ...
 
     // Display bookings
-    public function displayBookingsByUser($searchTerm = "")
+    public function displayBookings()
     {
         $sqlQuery = "
     SELECT
@@ -106,13 +124,9 @@ class Staff
         users AS u ON c.user_id = u.user_id
     INNER JOIN
         hotels AS h ON b.hotel_id = h.hotel_id
-    WHERE
-        u.fullname LIKE CONCAT('%', ?, '%')
-        OR u.user_id = ?
     ";
 
         $statement = $this->conn->prepare($sqlQuery);
-        $statement->bind_param("ss", $searchTerm, $searchTerm);
 
         if ($statement->execute()) {
             $result = $statement->get_result();
@@ -155,7 +169,7 @@ class Staff
             $sqlQuery .= " WHERE hotel_id = ?";
             $params[] = $hotelID;
 
-            $bindTypes = str_repeat('s', count($params) - 1) . 'i'; 
+            $bindTypes = str_repeat('s', count($params) - 1) . 'i';
             $statement = $this->conn->prepare($sqlQuery);
             $statement->bind_param($bindTypes, ...$params);
 
@@ -203,6 +217,19 @@ class Staff
         }
         return false;
     }
+    // ...
+
+
+    // Update user fields
+    public function updateUserField($userID, $fieldName, $fieldValue)
+    {
+        $sqlQuery = "UPDATE users SET $fieldName = ? WHERE user_id = ?";
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param('si', $fieldValue, $userID);
+
+        return $this->executeQuery($statement);
+    }
+
     // ...
 
     // Delete user or admin
