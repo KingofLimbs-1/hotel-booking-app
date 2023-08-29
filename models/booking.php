@@ -5,7 +5,6 @@ class Booking
 {
     // Fields
     private $conn;
-    // ...
 
     // Constructor
     public function __construct($conn)
@@ -31,6 +30,13 @@ class Booking
         } else {
             return null;
         }
+    }
+    // ...
+
+    // Get the ID of the last inserted booking
+    public function getLastInsertedID()
+    {
+        return $this->conn->insert_id;
     }
     // ...
 
@@ -64,7 +70,29 @@ class Booking
         } else {
             return false;
         }
-        // ...
+    }
+    // ...
+
+    // Get booking info
+    public function getBookingInfo($bookingID)
+    {
+        $sqlQuery = "SELECT b.booking_id, b.check_in, b.check_out, b.total_cost, b.days, u.fullname AS user_fullname, u.email AS user_email, h.name AS hotel_name, h.type as hotel_type, h.beds AS hotel_beds, h.rating AS hotel_rating, h.cost_per_night AS hotel_cost_per_night, h.address AS hotel_address, h.thumbnail as hotel_thumbnail
+                     FROM bookings AS b
+                     JOIN customers AS c ON b.customer_id = c.customer_id
+                     JOIN users AS u ON c.user_id = u.user_id
+                     JOIN hotels AS h ON b.hotel_id = h.hotel_id
+                     WHERE b.booking_id = ?";
+
+        $statement = $this->conn->prepare($sqlQuery);
+        $statement->bind_param('i', $bookingID);
+        $statement->execute();
+        $result = $statement->get_result();
+
+        if ($result->num_rows === 1) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
     }
     // ...
 }
