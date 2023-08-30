@@ -1,0 +1,144 @@
+/* GENERAL STYLING */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Cairo Regular";
+}
+
+a {
+  all: unset;
+  font-size: 25px;
+  cursor: pointer;
+}
+/* GENERAL STYLING END */
+
+/* LANDING */
+.landingContainer {
+  display: flex;
+  justify-content: center;
+  background-color: red;
+  border-radius: 25px;
+  margin: 40px;
+  height: 70vh;
+  width: auto;
+  background-image: url("../images/coverImage.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.innerContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 110px;
+}
+
+.innerText {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: #ffff;
+}
+
+.innerText h1 {
+  font-weight: 800;
+}
+
+.innerText h2 {
+  font-weight: 500;
+}
+
+.scrollBtn {
+  padding: 10px;
+  border-radius: 10px;
+  border: 5px solid #0ca593;
+  background: #eb4459;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+/* LANDING END */
+
+/* HOTEL DISPLAY THAT SORT OF WORKS */
+.hotelSection {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  margin-top: 100px;
+}
+
+button {
+  all: unset;
+}
+
+.hotelContainer {
+  cursor: pointer;
+  border-radius: 10px;
+  height: auto;
+  width: auto;
+  margin: 40px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.thumbnail {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnail img {
+  border-radius: 5px;
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.informationContainer {
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  transition: 0.3s;
+}
+
+.informationContainer:hover {
+  opacity: 0.5;
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+}
+
+#city {
+  text-align: center;
+}
+
+#price {
+  text-align: center;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rating img {
+  height: 20px;
+  width: 20px;
+}
+
+.beds img {
+  height: 25px;
+  width: 25px;
+}
+/* HOTEL DISPLAY END */

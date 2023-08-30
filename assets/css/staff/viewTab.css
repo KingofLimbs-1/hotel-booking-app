@@ -1,0 +1,126 @@
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cairo Regular";
+}
+
+.heading {
+  text-decoration: underline;
+}
+/* GENERAL END */
+
+/* Add Container */
+.addContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: auto;
+  padding: 20px;
+  gap: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.formItemContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+  all: unset;
+  width: 200px;
+  height: 40px;
+  background: #d9d9d9;
+  border-radius: 5px;
+}
+
+.submitContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  text-align: center;
+}
+
+input[type="submit"] {
+  all: unset;
+  width: 100px;
+  background: #0ca593;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+/* ADD CONTAINER END */
+
+/* Specific to bookings tab */
+.searchBar {
+  display: flex;
+  justify-content: center;
+}
+
+/* DISPLAY TABLE */
+.tableContainer {
+  margin: 20px;
+}
+
+table {
+  display: flex;
+  justify-content: center;
+  border-collapse: collapse;
+  width: auto;
+}
+
+td,
+th {
+  font-size: 15px;
+  padding: 10px;
+  border: 3px solid black;
+  font-weight: 200;
+}
+
+tr {
+  text-align: center;
+}
+
+.status-cell {
+  font-weight: bold;
+}
+
+.status-cell.completed {
+  color: green;
+}
+
+.status-cell.cancelled {
+  color: red;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.actions button {
+  all: unset;
+  cursor: pointer;
+}
+/* DISPLAY TABLE END */

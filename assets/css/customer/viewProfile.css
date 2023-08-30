@@ -1,0 +1,64 @@
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cairo Regular";
+}
+/* GENERAL END */
+
+/* CONTENT */
+.heading {
+  font-weight: 600;
+  text-decoration: underline;
+  margin: 20px;
+}
+
+.userInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 35px;
+  margin: 15px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: 50px;
+}
+
+.content span {
+  background: #d9d9d9;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.deleteAccountContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+  border: 2px solid #000;
+  color: #f00;
+  font-size: 25px;
+  font-weight: 500;
+  height: auto;
+  width: 180px;
+  text-align: center;
+}
+/* CONTENT END */

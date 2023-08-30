@@ -1,0 +1,42 @@
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cairo Regular";
+  font-size: 30px;
+}
+
+a {
+  all: unset;
+  cursor: pointer;
+  text-decoration: underline;
+}
+/* GENERAL END */
+
+/* CONTENT */
+.finalizedBookingContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.finalizedContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.finalizedContent h3 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.redirects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* CONTENT END */

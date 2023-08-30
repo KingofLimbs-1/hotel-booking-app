@@ -1,0 +1,133 @@
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cairo Regular";
+  font-size: 25px;
+  font-weight: 500;
+}
+
+a {
+  all: unset;
+  cursor: pointer;
+}
+/* GENERAL END */
+
+.heading {
+  margin: 20px;
+  text-decoration: underline;
+}
+
+/* BOOKING INFORMATION */
+.bookingDisplayContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.containerHeading {
+  display: flex;
+  justify-content: center;
+}
+
+.containerHeading h3 {
+  text-decoration: underline;
+}
+
+.bookingInfoContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 20px;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.thumbnail img {
+  border-radius: 5px;
+  max-width: 400px;
+  height: auto;
+}
+
+.completeBookingContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 600px;
+  margin-left: 40px;
+}
+
+input[type="submit"] {
+  all: unset;
+  cursor: pointer;
+  text-align: center;
+  height: 50px;
+  width: 100px;
+  background: #0ca593;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+#bedsImg {
+  height: 25px;
+  width: 25px;
+}
+/* BOOKING INFORMATION END */
+
+/* RELATED HOTELS */
+.relatedHotelsContainer {
+  margin-top: 100px;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.relatedHotelsHeading {
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+}
+
+.relatedHotels {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.relatedHotel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.relatedThumbnail img {
+  height: 200px;
+  width: auto;
+  border-radius: 5px;
+}
+
+#currentHotelCost {
+  text-decoration: line-through;
+}
+
+#relatedContainerPrice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+/* RELATED HOTELS END */

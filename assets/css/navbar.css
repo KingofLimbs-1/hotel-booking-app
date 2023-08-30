@@ -1,0 +1,48 @@
+/* NAVBAR */
+.logo {
+    margin-top: 15px;
+  }
+  
+  .navbar {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    height: 75px;
+    font-family: "Cairo Regular";
+  }
+
+  .navbar a {
+    all: unset;
+  }
+  
+  #center {
+    display: flex;
+    gap: 50px;
+  }
+  
+  #right {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-right: 10px;
+  }
+  
+  #right a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  #right p {
+    font-size: 20px;
+  }
+  
+  #right img {
+    height: 30px;
+    width: auto;
+  }
+  /* NAVBAR END */

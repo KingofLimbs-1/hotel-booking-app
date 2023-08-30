@@ -1,0 +1,70 @@
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cairo Regular";
+}
+/* GENERAL END */
+
+/* CONTENT */
+.heading {
+  text-decoration: underline;
+  margin: 20px;
+}
+
+.editPropertyContainer {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  margin-top: 100px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+  width: 600px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset,
+    0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.editItem {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+input[type="text"],
+span {
+  all: unset;
+  background: #d9d9d9;
+  height: 50px;
+  width: 400px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.submitContainer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+  border-radius: 10px;
+  background: #0ca593;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 110px;
+  font-weight: 500;
+}
+/* CONTENT END */

@@ -1,0 +1,86 @@
+/* GENERAL STYLING */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: "Cairo Regular";
+  font-size: 20px;
+}
+/* GENERAL STYLING END */
+
+/* LOGO */
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+/* LOGO END */
+
+/* REGISTRATION FORM */
+form {
+  display: flex;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 500px;
+}
+
+.submitContainer {
+  display: flex;
+  justify-content: center;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  border: none;
+  border-bottom: solid 1px #000;
+  outline: none;
+  font-size: 20px;
+}
+
+.passwordContainer{
+  position: relative;
+}
+
+.passwordIcon {
+  position: absolute;
+  right: 5px;
+  bottom: 2px;
+  cursor: pointer;
+}
+
+.passwordIcon img{
+  width: 30px;
+  height: auto;
+}
+
+/* Class responsible for hiding password icons */
+.hide{
+  visibility: hidden;
+}
+/* ... */
+
+.submitContainer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+input[type="submit"] {
+  all: unset;
+  cursor: pointer;
+  border: solid 2px #0CA593;
+  width: 20%;
+  height: auto;
+  margin: 10px;
+  padding: 5px;
+}
+/* REGISTRATION FORM END */

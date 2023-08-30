@@ -1,0 +1,101 @@
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cairo Regular";
+}
+/* GENERAL END */
+
+/* CONTENT SECTION */
+.hotelInformationContainer {
+  margin: 40px;
+}
+
+.detail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.imageCarousel {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 50px;
+}
+
+.hotelImage {
+  height: 200px;
+  width: 300px;
+  border-radius: 5px;
+}
+
+.heading {
+  font-size: 30px;
+  text-decoration: underline;
+}
+
+span {
+  font-size: 20px;
+}
+
+.facilities ul {
+  font-size: 20px;
+  list-style-type: none;
+}
+
+.bookHotelContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#bookHotel {
+  display: flex;
+  justify-content: center;
+}
+
+.bookingContainer {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  width: auto;
+  border-radius: 10px;
+  border: 5px solid #0ca593;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+  font-size: 30px;
+}
+
+input[type="date"] {
+  all: unset;
+  text-align: center;
+  align-items: center;
+}
+
+input[type="submit"] {
+  all: unset;
+  text-align: center;
+  font-size: 30px;
+  height: 140px;
+  width: 150px;
+  color: #fff;
+  background: #eb4459;
+}
+/* CONTENT SECTION END */
