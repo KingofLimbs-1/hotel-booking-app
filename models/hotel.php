@@ -14,6 +14,20 @@ class hotel
     }
     // ...
 
+    // Getter for conn
+    public function getConnection()
+    {
+        return $this->conn;
+    }
+    // ...
+
+    // Setter for conn
+    public function setConnection($conn)
+    {
+        $this->conn = $conn;
+    }
+    // ...
+
 
     // METHODS
 

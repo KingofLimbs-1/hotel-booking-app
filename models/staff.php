@@ -14,6 +14,20 @@ class Staff
     }
     // ...
 
+    // Getter for conn
+    public function getConnection()
+    {
+        return $this->conn;
+    }
+    // ...
+
+    // Setter for conn
+    public function setConnection($conn)
+    {
+        $this->conn = $conn;
+    }
+    // ...
+
     // UTILITY
 
     // Check to see if user performing admin-based operations has a role of user

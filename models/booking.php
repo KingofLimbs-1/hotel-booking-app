@@ -13,6 +13,20 @@ class Booking
     }
     // ...
 
+    // Getter for conn
+    public function getConnection()
+    {
+        return $this->conn;
+    }
+    // ...
+
+    // Setter for conn
+    public function setConnection($conn)
+    {
+        $this->conn = $conn;
+    }
+    // ...
+
     // Utility functions
 
     // Get signed in user customer ID 
